@@ -118,6 +118,13 @@ delete from LAB_TestRequisition
 DBCC CHECKIDENT ('LAB_TestRequisition', RESEED, 0);
 
 
+delete from RAD_PatientImagingReport
+DBCC CHECKIDENT ('RAD_PatientImagingReport', RESEED, 0);
+
+
+delete from RAD_PatientImagingRequisition
+DBCC CHECKIDENT ('RAD_PatientImagingRequisition', RESEED, 0);
+
 delete from BIL_TXN_BillingTransactionItems
 DBCC CHECKIDENT ('BIL_TXN_BillingTransactionItems', RESEED, 0);
 
