@@ -35,7 +35,6 @@ ALTER INDEX [IX_TblAdmission_VisitId_PatientId]  ON ADT_PatientAdmission DISABLE
 
 delete from dbo.__MigrationHistory 
 
-
 delete from ACC_Bill_LedgerMapping
 DBCC CHECKIDENT ('ACC_Bill_LedgerMapping', RESEED, 0);
 
@@ -114,13 +113,14 @@ DBCC CHECKIDENT ('BIL_CFG_BillItemPrice', RESEED, 0);
 delete from BIL_CFG_BillItemPrice_History
 DBCC CHECKIDENT ('BIL_CFG_BillItemPrice_History', RESEED, 0);
 
+delete from LAB_TXN_TestComponentResult
+DBCC CHECKIDENT ('LAB_TXN_TestComponentResult', RESEED, 0);
+
 delete from LAB_TestRequisition
 DBCC CHECKIDENT ('LAB_TestRequisition', RESEED, 0);
 
-
 delete from RAD_PatientImagingReport
 DBCC CHECKIDENT ('RAD_PatientImagingReport', RESEED, 0);
-
 
 delete from RAD_PatientImagingRequisition
 DBCC CHECKIDENT ('RAD_PatientImagingRequisition', RESEED, 0);
@@ -128,29 +128,83 @@ DBCC CHECKIDENT ('RAD_PatientImagingRequisition', RESEED, 0);
 delete from BIL_TXN_BillingTransactionItems
 DBCC CHECKIDENT ('BIL_TXN_BillingTransactionItems', RESEED, 0);
 
+delete from BIL_TXN_CreditBillStatus
+DBCC CHECKIDENT ('BIL_TXN_CreditBillStatus', RESEED, 0);
+
 delete from BIL_TXN_BillingTransaction
 DBCC CHECKIDENT ('BIL_TXN_BillingTransaction', RESEED, 0);
+
+delete from BIL_TXN_SchemeRefund
+DBCC CHECKIDENT ('BIL_TXN_SchemeRefund', RESEED, 0);
+
+delete from BIL_TXN_CashHandover
+DBCC CHECKIDENT ('BIL_TXN_CashHandover', RESEED, 0);
 
 delete from BIL_CFG_Counter
 DBCC CHECKIDENT ('BIL_CFG_Counter', RESEED, 0);
 
+delete from PHRM_TXN_CreditBillStatus
+DBCC CHECKIDENT ('PHRM_TXN_CreditBillStatus', RESEED, 0);
+
+delete from BIL_TXN_DischargeStatement
+DBCC CHECKIDENT ('BIL_TXN_DischargeStatement', RESEED, 0);
+
 delete from BIL_CFG_FiscalYears
 DBCC CHECKIDENT ('BIL_CFG_FiscalYears', RESEED, 0);
 
+
+
 delete from BIL_CFG_Packages
 DBCC CHECKIDENT ('BIL_CFG_Packages', RESEED, 0);
+
+delete from PAT_MAP_PatientSchemes
+DBCC CHECKIDENT ('PAT_MAP_PatientSchemes', RESEED, 0);
+
+delete from ADT_PatientAdmission
+DBCC CHECKIDENT ('ADT_PatientAdmission', RESEED, 0);
+
+delete from PHRM_TXN_InvoiceItems
+DBCC CHECKIDENT ('PHRM_TXN_InvoiceItems', RESEED, 0);
+
+delete from PHRM_TXN_Invoice
+DBCC CHECKIDENT ('PHRM_TXN_Invoice', RESEED, 0);
+
+delete from MR_TXN_Outpatient_FinalDiagnosis
+DBCC CHECKIDENT ('MR_TXN_Outpatient_FinalDiagnosis', RESEED, 0);
+
+delete from ADT_TXN_PatientBedInfo
+DBCC CHECKIDENT ('ADT_TXN_PatientBedInfo', RESEED, 0);
+
+delete from PAT_PatientVisits
+DBCC CHECKIDENT ('PAT_PatientVisits', RESEED, 0);
+
+delete from BIL_MAP_ServiceItemSchemeSetting
+DBCC CHECKIDENT ('BIL_MAP_ServiceItemSchemeSetting', RESEED, 0);
+
+delete from ADT_CFG_AutoBillingItem
+where ADT_CFG_AutoBillingItem.AdtAutoBillingItemId>0
+DBCC CHECKIDENT ('ADT_CFG_AutoBillingItem', RESEED, 0);
+
+delete from ADT_CFG_DepositSettings
+DBCC CHECKIDENT ('ADT_CFG_DepositSettings', RESEED, 0);
+
+delete from ADT_MAP_BedFeatureSchemePriceCategory
+DBCC CHECKIDENT ('ADT_MAP_BedFeatureSchemePriceCategory', RESEED, 0);
+
+delete from BIL_MAP_PriceCategoryVsScheme
+DBCC CHECKIDENT ('BIL_MAP_PriceCategoryVsScheme', RESEED, 0);
+
+delete from BIL_CFG_Scheme
+DBCC CHECKIDENT ('BIL_CFG_Scheme', RESEED, 0);
+
+delete from BIL_MAP_PriceCategoryServiceItem
+DBCC CHECKIDENT ('BIL_MAP_PriceCategoryServiceItem', RESEED, 0);
 
 delete from BIL_CFG_PriceCategory
 DBCC CHECKIDENT ('BIL_CFG_PriceCategory', RESEED, 0);
 
 delete from BIL_History_BillingTransactionItems
 DBCC CHECKIDENT ('BIL_History_BillingTransactionItems', RESEED, 0);
-
-delete from BIL_Temp_ItemsMapping
-DBCC CHECKIDENT ('BIL_Temp_ItemsMapping', RESEED, 0);
-
-delete from BIL_TXN_CashHandover
-DBCC CHECKIDENT ('BIL_TXN_CashHandover', RESEED, 0);
 
 delete from BIL_TXN_Settlements
 DBCC CHECKIDENT ('BIL_TXN_Settlements', RESEED, 0);
@@ -250,12 +304,6 @@ DBCC CHECKIDENT ('CLN_PAT_Images', RESEED, 0);
 
 delete from CLN_PatientNotes
 DBCC CHECKIDENT ('CLN_PatientNotes', RESEED, 0);
-
-delete from CLN_PatientVisit_Notes
-DBCC CHECKIDENT ('CLN_PatientVisit_Notes', RESEED, 0);
-
-delete from CLN_PatientVisitProcedure
-DBCC CHECKIDENT ('CLN_PatientVisitProcedure', RESEED, 0);
 
 delete from CLN_PrescriptionSlip_Acceptance
 DBCC CHECKIDENT ('CLN_PrescriptionSlip_Acceptance', RESEED, 0);
@@ -362,8 +410,29 @@ DBCC CHECKIDENT ('INV_AssetServiceHistory', RESEED, 0);
 delete from INV_MST_Donation
 DBCC CHECKIDENT ('INV_MST_Donation', RESEED, 0);
 
+delete from INV_TXN_StockTransaction
+DBCC CHECKIDENT ('INV_TXN_StockTransaction', RESEED, 0);
+
+delete from INV_TXN_StoreStock
+DBCC CHECKIDENT ('INV_TXN_StoreStock', RESEED, 0);
+
 delete from INV_MST_Stock
 DBCC CHECKIDENT ('INV_MST_Stock', RESEED, 0);
+
+delete from INV_TXN_GoodsReceiptItems
+DBCC CHECKIDENT ('INV_TXN_GoodsReceiptItems', RESEED, 0);
+
+delete from INV_TXN_GoodsReceipt
+DBCC CHECKIDENT ('INV_TXN_GoodsReceipt', RESEED, 0);
+
+delete from INV_TXN_PurchaseOrderItems
+DBCC CHECKIDENT ('INV_TXN_PurchaseOrderItems', RESEED, 0);
+
+delete from INV_TXN_PurchaseOrder
+DBCC CHECKIDENT ('INV_TXN_PurchaseOrder', RESEED, 0);
+
+delete from INV_RequestForQuotationVendors
+DBCC CHECKIDENT ('INV_RequestForQuotationVendors', RESEED, 0);
 
 delete from INV_MST_Vendor
 DBCC CHECKIDENT ('INV_MST_Vendor', RESEED, 0);
@@ -382,9 +451,6 @@ DBCC CHECKIDENT ('INV_RequestForQuotation', RESEED, 0);
 
 delete from INV_RequestForQuotationItems
 DBCC CHECKIDENT ('INV_RequestForQuotationItems', RESEED, 0);
-
-delete from INV_RequestForQuotationVendors
-DBCC CHECKIDENT ('INV_RequestForQuotationVendors', RESEED, 0);
 
 delete from INV_TXN_AssetDepreciation
 DBCC CHECKIDENT ('INV_TXN_AssetDepreciation', RESEED, 0);
@@ -410,35 +476,17 @@ DBCC CHECKIDENT ('INV_TXN_FixedAssetReturnItems', RESEED, 0);
 delete from INV_TXN_FixedAssetStock
 DBCC CHECKIDENT ('INV_TXN_FixedAssetStock', RESEED, 0);
 
-delete from INV_TXN_GoodsReceipt
-DBCC CHECKIDENT ('INV_TXN_GoodsReceipt', RESEED, 0);
-
-delete from INV_TXN_PurchaseOrder
-DBCC CHECKIDENT ('INV_TXN_PurchaseOrder', RESEED, 0);
-
-delete from INV_TXN_PurchaseOrderItems
-DBCC CHECKIDENT ('INV_TXN_PurchaseOrderItems', RESEED, 0);
-
-delete from INV_TXN_PurchaseRequest
-DBCC CHECKIDENT ('INV_TXN_PurchaseRequest', RESEED, 0);
-
 delete from INV_TXN_PurchaseRequestItems
 DBCC CHECKIDENT ('INV_TXN_PurchaseRequestItems', RESEED, 0);
 
-delete from INV_TXN_RequisitionForPO
-DBCC CHECKIDENT ('INV_TXN_RequisitionForPO', RESEED, 0);
-
-delete from INV_TXN_RequisitionItemsForPO
-DBCC CHECKIDENT ('INV_TXN_RequisitionItems', RESEED, 0);
+delete from INV_TXN_PurchaseRequest
+DBCC CHECKIDENT ('INV_TXN_PurchaseRequest', RESEED, 0);
 
 delete from INV_TXN_ReturnToVendor
 DBCC CHECKIDENT ('INV_TXN_ReturnToVendor', RESEED, 0);
 
 delete from INV_TXN_ReturnToVendorItems
 DBCC CHECKIDENT ('INV_TXN_ReturnToVendorItems', RESEED, 0);
-
-delete from INV_TXN_StoreStock
-DBCC CHECKIDENT ('INV_TXN_StoreStock', RESEED, 0);
 
 delete from INV_TXN_WriteOffItems
 DBCC CHECKIDENT ('INV_TXN_WriteOffItems', RESEED, 0);
@@ -470,17 +518,14 @@ DBCC CHECKIDENT ('MR_RecordSummary', RESEED, 0);
 delete from MR_TXN_Inpatient_Diagnosis
 DBCC CHECKIDENT ('MR_TXN_Inpatient_Diagnosis', RESEED, 0);
 
-delete from NewItemHAMS
-DBCC CHECKIDENT ('NewItemHAMS', RESEED, 0);
+delete from OT_TXN_OtTeamsInfo
+DBCC CHECKIDENT ('OT_TXN_OtTeamsInfo', RESEED, 0);
 
 delete from OT_TXN_BookingDetails
 DBCC CHECKIDENT ('OT_TXN_BookingDetails', RESEED, 0);
 
 delete from OT_TXN_CheckListInfo
 DBCC CHECKIDENT ('OT_TXN_CheckListInfo', RESEED, 0);
-
-delete from OT_TXN_OtTeamsInfo
-DBCC CHECKIDENT ('OT_TXN_OtTeamsInfo', RESEED, 0);
 
 delete from OT_TXN_Summary
 DBCC CHECKIDENT ('OT_TXN_Summary', RESEED, 0);
@@ -514,6 +559,33 @@ DBCC CHECKIDENT ('PHRM_BIL_Transaction', RESEED, 0);
 
 delete from PHRM_BIL_TransactionItem
 DBCC CHECKIDENT ('PHRM_BIL_TransactionItem', RESEED, 0);
+
+delete from PHRM_EmployeeCashTransaction
+DBCC CHECKIDENT ('PHRM_EmployeeCashTransaction', RESEED, 0);
+
+delete from PHRM_TXN_StockTransaction
+DBCC CHECKIDENT ('PHRM_TXN_StockTransaction', RESEED, 0);
+
+delete from PHRM_StoreDispatchItems
+DBCC CHECKIDENT ('PHRM_StoreDispatchItems', RESEED, 0);
+
+delete from PHRM_StoreRequisitionItems
+DBCC CHECKIDENT ('PHRM_StoreRequisitionItems', RESEED, 0);
+
+delete from PHRM_StoreRequisition
+DBCC CHECKIDENT ('PHRM_StoreRequisition', RESEED, 0);
+
+delete from PHRM_PurchaseOrderItems
+DBCC CHECKIDENT ('PHRM_PurchaseOrderItems', RESEED, 0);
+
+delete from PHRM_GoodsReceiptItems
+DBCC CHECKIDENT ('PHRM_GoodsReceiptItems', RESEED, 0);
+
+delete from PHRM_GoodsReceipt
+DBCC CHECKIDENT ('PHRM_GoodsReceipt', RESEED, 0);
+
+delete from PHRM_PurchaseOrder
+DBCC CHECKIDENT ('PHRM_PurchaseOrder', RESEED, 0);
 
 delete from PHRM_CFG_FiscalYears
 DBCC CHECKIDENT ('PHRM_CFG_FiscalYears', RESEED, 0);
@@ -575,15 +647,6 @@ DBCC CHECKIDENT ('PHRM_StockTxnItems', RESEED, 0);
 delete from PHRM_StockTxnItems_MRPHistory
 DBCC CHECKIDENT ('PHRM_StockTxnItems_MRPHistory', RESEED, 0);
 
-delete from PHRM_StoreDispatchItems
-DBCC CHECKIDENT ('PHRM_StoreDispatchItems', RESEED, 0);
-
-delete from PHRM_StoreRequisition
-DBCC CHECKIDENT ('PHRM_StoreRequisition', RESEED, 0);
-
-delete from PHRM_StoreRequisitionItems
-DBCC CHECKIDENT ('PHRM_StoreRequisitionItems', RESEED, 0);
-
 delete from PHRM_TXN_DispensaryStock
 DBCC CHECKIDENT ('PHRM_TXN_DispensaryStock', RESEED, 0);
 
@@ -592,9 +655,6 @@ DBCC CHECKIDENT ('PHRM_TXN_DispensaryStockTransaction', RESEED, 0);
 
 delete from PHRM_TXN_Invoice
 DBCC CHECKIDENT ('PHRM_TXN_Invoice', RESEED, 0);
-
-delete from PHRM_TXN_InvoiceItems
-DBCC CHECKIDENT ('PHRM_TXN_InvoiceItems', RESEED, 0);
 
 delete from PHRM_TXN_InvoiceReturn
 DBCC CHECKIDENT ('PHRM_TXN_InvoiceReturn', RESEED, 0);
@@ -607,9 +667,6 @@ DBCC CHECKIDENT ('PHRM_TXN_Settlement', RESEED, 0);
 
 delete from PHRM_TXN_Stock
 DBCC CHECKIDENT ('PHRM_TXN_Stock', RESEED, 0);
-
-delete from PHRM_TXN_StockTransaction
-DBCC CHECKIDENT ('PHRM_TXN_StockTransaction', RESEED, 0);
 
 delete from PHRM_TXN_StoreStock
 DBCC CHECKIDENT ('PHRM_TXN_StoreStock', RESEED, 0);
@@ -636,7 +693,6 @@ delete from PROLL_EmpLeave
 DBCC CHECKIDENT ('PROLL_EmpLeave', RESEED, 0);
 
 delete from SCH_EmpDayWiseAvailability
-DBCC CHECKIDENT ('SCH_EmpDayWiseAvailability', RESEED, 0);
 
 delete from SCH_EmployeeSchedules
 DBCC CHECKIDENT ('SCH_EmployeeSchedules', RESEED, 0);
@@ -644,29 +700,28 @@ DBCC CHECKIDENT ('SCH_EmployeeSchedules', RESEED, 0);
 delete from SCH_MAP_EmployeeShift
 DBCC CHECKIDENT ('SCH_MAP_EmployeeShift', RESEED, 0);
 
-delete from TBL_BillItem_Temp
-DBCC CHECKIDENT ('TBL_BillItem_Temp', RESEED, 0);
-
-delete from Temp_LabNewPrice
-DBCC CHECKIDENT ('Temp_LabNewPrice', RESEED, 0);
-
-delete from Temp10
-DBCC CHECKIDENT ('Temp10', RESEED, 0);
-
-delete from tempRange
-DBCC CHECKIDENT ('tempRange', RESEED, 0);
-
 delete from TXN_EmpDueAmount
 DBCC CHECKIDENT ('TXN_EmpDueAmount', RESEED, 0);
 
 delete from TXN_Sms
 DBCC CHECKIDENT ('TXN_Sms', RESEED, 0);
 
+delete from INV_TXN_Dispatch
+DBCC CHECKIDENT ('INV_TXN_Dispatch', RESEED, 0);
+
+delete from INV_TXN_DispatchItems
+DBCC CHECKIDENT ('INV_TXN_DispatchItems', RESEED, 0);
+
+delete from INV_TXN_RequisitionItems
+DBCC CHECKIDENT ('INV_TXN_RequisitionItems', RESEED, 0);
+
+delete from INV_TXN_Requisition
+DBCC CHECKIDENT ('INV_TXN_Requisition', RESEED, 0);
+
 delete from  TXN_Verification
 DBCC CHECKIDENT ('TXN_Verification', RESEED, 0);
 
 delete from WardInformationModels 
-DBCC CHECKIDENT ('WardInformationModels', RESEED, 0);
 
 delete from  WARD_Transaction
 DBCC CHECKIDENT ('WARD_Transaction', RESEED, 0);
@@ -707,24 +762,14 @@ DBCC CHECKIDENT ('VACC_PatientVaccineDetail', RESEED, 0);
 delete from PHRM_StoreStock
 DBCC CHECKIDENT ('PHRM_StoreStock', RESEED, 0);
 
-delete from LAB_TXN_TestComponentResult
-DBCC CHECKIDENT ('LAB_TXN_TestComponentResult', RESEED, 0);
-
 delete from LAB_TXN_LabReports
 DBCC CHECKIDENT ('LAB_TXN_LabReports', RESEED, 0);
 
 delete from LAB_BarCode
 DBCC CHECKIDENT ('LAB_BarCode', RESEED, 0);
 
-
-delete from AllAbnormalDataTable
-DBCC CHECKIDENT ('AllAbnormalDataTable', RESEED, 0);
-
 delete from Lab_Mst_Gov_Report_Items
 DBCC CHECKIDENT ('Lab_Mst_Gov_Report_Items', RESEED, 0);
-
-delete from LAB_LabTestsWithCorrectedCategory
-DBCC CHECKIDENT ('LAB_LabTestsWithCorrectedCategory', RESEED, 0);
 
 delete from PAT_PatientGurantorInfo
 DBCC CHECKIDENT ('PAT_PatientGurantorInfo', RESEED, 0);
@@ -747,32 +792,17 @@ DBCC CHECKIDENT ('BIL_TXN_Deposit', RESEED, 0);
 delete from  TXN_EmpCashTransaction
 DBCC CHECKIDENT ('TXN_EmpCashTransaction', RESEED, 0);
 
-delete from BIL_TXN_Denomination
-DBCC CHECKIDENT ('BIL_TXN_Denomination', RESEED, 0);
-
 delete from CLN_KV_PatientClinical_Info
 DBCC CHECKIDENT ('CLN_KV_PatientClinical_Info', RESEED, 0);
 
 delete from ACC_Ledger_Mapping
 DBCC CHECKIDENT ('ACC_Ledger_Mapping', RESEED, 0);
 
-delete from BIL_MST_Handover
-DBCC CHECKIDENT ('BIL_MST_Handover', RESEED, 0);
-
-delete from UpdatedBillItemPriceTable
-DBCC CHECKIDENT ('UpdatedBillItemPriceTable', RESEED, 0);
-
-delete from BIL_TEMP_CFGBillItemPrice_7Sept
-DBCC CHECKIDENT ('BIL_TEMP_CFGBillItemPrice_7Sept', RESEED, 0);
-
 delete from RAD_PatientImagingReport
 DBCC CHECKIDENT ('RAD_PatientImagingReport', RESEED, 0);
 
 delete from RAD_PatientImagingRequisition
 DBCC CHECKIDENT ('RAD_PatientImagingRequisition', RESEED, 0);
-
-delete from ADT_TXN_PatientBedInfo
-DBCC CHECKIDENT ('ADT_TXN_PatientBedInfo', RESEED, 0);
 
 delete from ADT_PatientAdmission
 DBCC CHECKIDENT ('ADT_PatientAdmission', RESEED, 0);
@@ -795,41 +825,14 @@ DBCC CHECKIDENT ('TXN_PrintInformation', RESEED, 0);
 delete from BIL_SYNC_BillingAccounting
 DBCC CHECKIDENT ('BIL_SYNC_BillingAccounting', RESEED, 0);
 
-delete from PHRM_PurchaseOrder
-DBCC CHECKIDENT ('PHRM_PurchaseOrder', RESEED, 0);
-
-delete from PHRM_PurchaseOrderItems
-DBCC CHECKIDENT ('PHRM_PurchaseOrderItems', RESEED, 0);
-
-delete from PHRM_GoodsReceipt
-DBCC CHECKIDENT ('PHRM_GoodsReceipt', RESEED, 0);
-
-delete from PHRM_GoodsReceiptItems
-DBCC CHECKIDENT ('PHRM_GoodsReceiptItems', RESEED, 0);
-
 delete from PHRM_DispensaryStock
 DBCC CHECKIDENT ('PHRM_DispensaryStock', RESEED, 0);
 
 delete from INV_FiscalYearStock
 DBCC CHECKIDENT ('INV_FiscalYearStock', RESEED, 0);
 
-delete from INV_TXN_StockTransaction
-DBCC CHECKIDENT ('INV_TXN_StockTransaction', RESEED, 0);
-
 delete from WARD_INV_Transaction
 DBCC CHECKIDENT ('WARD_INV_Transaction', RESEED, 0);
-
-delete from INV_TEMP_TXN_NewStockTxn
-DBCC CHECKIDENT ('INV_TEMP_TXN_NewStockTxn', RESEED, 0);
-
-delete from INV_TXN_DispatchItems
-DBCC CHECKIDENT ('INV_TXN_DispatchItems', RESEED, 0);
-
-delete from INV_TXN_RequisitionItems
-DBCC CHECKIDENT ('INV_TXN_RequisitionItems', RESEED, 0);
-
-delete from INV_TXN_Requisition
-DBCC CHECKIDENT ('INV_TXN_Requisition', RESEED, 0);
 
 delete from WARD_INV_Stock
 DBCC CHECKIDENT ('WARD_INV_Stock', RESEED, 0);
@@ -837,30 +840,20 @@ DBCC CHECKIDENT ('WARD_INV_Stock', RESEED, 0);
 delete from WARD_INV_Consumption
 DBCC CHECKIDENT ('WARD_INV_Consumption', RESEED, 0);
 
-delete from INV_TXN_GoodsReceiptItems
-DBCC CHECKIDENT ('INV_TXN_GoodsReceiptItems', RESEED, 0);
-
 delete from INV_TXN_Stock
 DBCC CHECKIDENT ('INV_TXN_Stock', RESEED, 0);
-
-delete from ACC_Ledger_2076_77_2
-DBCC CHECKIDENT ('ACC_Ledger_2076_77_2', RESEED, 0);
-
-delete from ACC_LedgerCharak$
-DBCC CHECKIDENT ('ACC_LedgerCharak$', RESEED, 0);
 
 delete from PAT_NeighbourhoodCardDetail
 DBCC CHECKIDENT ('PAT_NeighbourhoodCardDetail', RESEED, 0);
 
-delete from PAT_PatientVisits
-DBCC CHECKIDENT ('PAT_PatientVisits', RESEED, 0);
+delete from INS_TXN_ClaimPayment
+DBCC CHECKIDENT ('INS_TXN_ClaimPayment', RESEED, 0);
+
+delete from INS_TXN_InsuranceClaim
+DBCC CHECKIDENT ('INS_TXN_InsuranceClaim', RESEED, 0);
 
 delete from PAT_Patient where PatientId>0
 DBCC CHECKIDENT ('PAT_Patient', RESEED, 0);
-
-
-
-
 
 end try
 
@@ -900,8 +893,6 @@ SELECT
 @ErrorMessage = ERROR_MESSAGE() + ' occured at ' +  CAST(ERROR_LINE() AS VARCHAR(50))
 print @ErrorMessage
 end catch
-
-
 
 ALTER INDEX [UK_BillingCounterName_Type]ON BIL_CFG_Counter REBUILD
 ALTER INDEX [UK_BIL_CFG_FiscalYears] ON BIL_CFG_FiscalYears REBUILD
