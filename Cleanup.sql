@@ -12,7 +12,7 @@ ALTER INDEX [UniqueOperatiONName] ON MR_MST_OperatiONType DISABLE
 ALTER INDEX [UK_Membership_Community] ON PAT_CFG_MembershipType DISABLE
 ALTER INDEX [UQ__PAT_Pati__D7A3AA55F0F539DA] ON PAT_PatientFiles DISABLE
 ALTER INDEX [IX_TblPatInsuranceInfo_PatientId] ON PAT_PatientInsuranceInfo DISABLE
-ALTER INDEX[UK_PHRM_CFG_FiscalYear] ON PHRM_CFG_FiscalYears DISABLE
+ALTER INDEX [UK_PHRM_CFG_FiscalYear] ON PHRM_CFG_FiscalYears DISABLE
 ALTER TABLE PHRM_StockTxnItems DISABLE TRIGGER [TR_PHRM_StockTxnItems_MRPUpdateHistory]
 ALTER TABLE PHRM_StockTxnItems DISABLE TRIGGER [TR_PHRM_StockTxnItems_UpdateStock]
 ALTER TABLE PHRM_TXN_InvoiceItems DISABLE TRIGGER [TRG_PHRM_TXN_InvoiceItems_UpdateGRItemPrice]
@@ -854,6 +854,32 @@ DBCC CHECKIDENT ('INS_TXN_InsuranceClaim', RESEED, 0);
 
 delete from PAT_Patient where PatientId>0
 DBCC CHECKIDENT ('PAT_Patient', RESEED, 0);
+
+
+delete from ADT_DischargeSummaryConsultant 
+DBCC CHECKIDENT ('ADT_DischargeSummaryConsultant', RESEED, 0);
+
+--deleting employees
+delete from EMP_Employee
+where FirstName != 'admin'
+DBCC CHECKIDENT ('EMP_Employee', RESEED, 0);
+
+--deleting service items
+delete from BIL_MST_ServiceItem 
+DBCC CHECKIDENT ('BIL_MST_ServiceItem', RESEED, 0);
+
+--Deleting Users other than Admin
+
+delete from RBAC_MAP_UserRole
+where UserId != '1'
+DBCC CHECKIDENT ('RBAC_MAP_UserRole', RESEED, 0);
+
+delete from RBAC_User
+where UserName != 'admin'
+DBCC CHECKIDENT ('RBAC_User', RESEED, 0);
+
+
+
 
 end try
 
