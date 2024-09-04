@@ -859,10 +859,7 @@ DBCC CHECKIDENT ('PAT_Patient', RESEED, 0);
 delete from ADT_DischargeSummaryConsultant 
 DBCC CHECKIDENT ('ADT_DischargeSummaryConsultant', RESEED, 0);
 
---deleting employees
-delete from EMP_Employee
-where FirstName != 'admin'
-DBCC CHECKIDENT ('EMP_Employee', RESEED, 0);
+
 
 --deleting service items
 delete from BIL_MST_ServiceItem 
@@ -878,7 +875,10 @@ delete from RBAC_User
 where UserName != 'admin'
 DBCC CHECKIDENT ('RBAC_User', RESEED, 0);
 
-
+--deleting employees
+delete from EMP_Employee
+where FirstName != 'admin'
+DBCC CHECKIDENT ('EMP_Employee', RESEED, 0);
 
 
 end try
