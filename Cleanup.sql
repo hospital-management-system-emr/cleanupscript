@@ -861,9 +861,6 @@ DBCC CHECKIDENT ('ADT_DischargeSummaryConsultant', RESEED, 0);
 
 
 
---deleting service items
-delete from BIL_MST_ServiceItem 
-DBCC CHECKIDENT ('BIL_MST_ServiceItem', RESEED, 0);
 
 --Deleting Users other than Admin
 
@@ -880,6 +877,10 @@ delete from EMP_Employee
 where FirstName != 'admin'
 DBCC CHECKIDENT ('EMP_Employee', RESEED, 0);
 
+
+--deleting service items
+delete from BIL_MST_ServiceItem 
+DBCC CHECKIDENT ('BIL_MST_ServiceItem', RESEED, 0);
 
 end try
 
