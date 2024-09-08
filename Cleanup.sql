@@ -152,8 +152,6 @@ DBCC CHECKIDENT ('BIL_TXN_DischargeStatement', RESEED, 0);
 delete from BIL_CFG_FiscalYears
 DBCC CHECKIDENT ('BIL_CFG_FiscalYears', RESEED, 0);
 
-
-
 delete from BIL_CFG_Packages
 DBCC CHECKIDENT ('BIL_CFG_Packages', RESEED, 0);
 
@@ -859,9 +857,6 @@ DBCC CHECKIDENT ('PAT_Patient', RESEED, 0);
 delete from ADT_DischargeSummaryConsultant 
 DBCC CHECKIDENT ('ADT_DischargeSummaryConsultant', RESEED, 0);
 
-
-
-
 --Deleting Users other than Admin
 
 delete from RBAC_MAP_UserRole
@@ -877,10 +872,79 @@ delete from EMP_Employee
 where FirstName != 'admin'
 DBCC CHECKIDENT ('EMP_Employee', RESEED, 0);
 
-
 --deleting service items
 delete from BIL_MST_ServiceItem 
 DBCC CHECKIDENT ('BIL_MST_ServiceItem', RESEED, 0);
+
+--deleting Account Details
+delete from ACC_Ledger
+DBCC CHECKIDENT ('ACC_Ledger', RESEED, 0);
+
+delete from ADT_Bed
+DBCC CHECKIDENT ('ADT_Bed', RESEED, 0);
+
+delete from ADT_MST_BedFeature
+DBCC CHECKIDENT ('ADT_MST_BedFeature', RESEED, 0);
+
+delete from ADT_MST_Ward
+DBCC CHECKIDENT ('ADT_MST_Ward', RESEED, 0);
+
+delete from BIL_MST_Credit_Organization
+DBCC CHECKIDENT ('BIL_MST_Credit_Organization', RESEED, 0);
+
+delete from BIL_MST_Credit_Organization
+DBCC CHECKIDENT ('BIL_MST_Credit_Organization', RESEED, 0);
+
+delete from INV_MST_Item
+DBCC CHECKIDENT ('INV_MST_Item', RESEED, 0);
+
+delete from INV_MST_Company
+DBCC CHECKIDENT ('INV_MST_Company', RESEED, 0);
+
+delete from INV_MST_ItemSubCategory
+DBCC CHECKIDENT ('INV_MST_ItemSubCategory', RESEED, 0);
+
+delete from INV_MST_UnitOfMeasurement
+DBCC CHECKIDENT ('INV_MST_UnitOfMeasurement', RESEED, 0);
+
+delete from Lab_MAP_TestComponents
+DBCC CHECKIDENT ('Lab_MAP_TestComponents', RESEED, 0);
+
+delete from LAB_LabTests
+DBCC CHECKIDENT ('LAB_LabTests', RESEED, 0);
+
+delete from PHRM_MST_Stock
+DBCC CHECKIDENT ('PHRM_MST_Stock', RESEED, 0);
+
+delete from PHRM_MST_StockBarcode;
+
+delete from PHRM_MST_Item
+DBCC CHECKIDENT ('PHRM_MST_Item', RESEED, 0);
+
+delete from PHRM_MST_ItemType
+DBCC CHECKIDENT ('PHRM_MST_ItemType', RESEED, 0);
+
+delete from PHRM_MST_Category
+DBCC CHECKIDENT ('PHRM_MST_Category', RESEED, 0);
+
+delete from PHRM_MST_Company
+DBCC CHECKIDENT ('PHRM_MST_Company', RESEED, 0);
+
+delete from PHRM_MST_Generic
+DBCC CHECKIDENT ('PHRM_MST_Generic', RESEED, 0);
+
+delete from PHRM_MST_Rack
+DBCC CHECKIDENT ('PHRM_MST_Rack', RESEED, 0);
+
+delete from PHRM_MST_Store
+DBCC CHECKIDENT ('PHRM_MST_Store', RESEED, 0);
+
+delete from PHRM_MST_Supplier
+DBCC CHECKIDENT ('PHRM_MST_Supplier', RESEED, 0);
+
+delete from PHRM_MST_UnitOfMeasurement
+DBCC CHECKIDENT ('PHRM_MST_UnitOfMeasurement', RESEED, 0);
+
 
 end try
 
