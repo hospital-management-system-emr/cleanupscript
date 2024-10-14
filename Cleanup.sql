@@ -62,17 +62,23 @@ DBCC CHECKIDENT ('ACC_Transaction_History', RESEED, 0);
 delete from  ACC_TransactionItemDetail
 DBCC CHECKIDENT ('ACC_TransactionItemDetail', RESEED, 0);
 
+delete from ACC_TXN_Link
+DBCC CHECKIDENT ('ACC_TXN_Link', RESEED, 0);
+
 delete from ACC_TransactionItems
 DBCC CHECKIDENT ('ACC_TransactionItems', RESEED, 0);
+
+delete from ACC_MST_CodeDetails
+DBCC CHECKIDENT ('ACC_MST_CodeDetails', RESEED, 0);
+
+--delete from ACC_MST_ChartOfAccounts
+--DBCC CHECKIDENT ('ACC_MST_ChartOfAccounts', RESEED, 0);
 
 delete from ACC_Transactions
 DBCC CHECKIDENT ('ACC_Transactions', RESEED, 0);
 
 delete from  ACC_TXN_Bank_Reconciliation
 DBCC CHECKIDENT ('ACC_TXN_Bank_Reconciliation', RESEED, 0);
-
-delete from ACC_TXN_Link
-DBCC CHECKIDENT ('ACC_TXN_Link', RESEED, 0);
 
 delete from ACC_TXN_Payment
 DBCC CHECKIDENT ('ACC_TXN_Payment', RESEED, 0);
@@ -585,6 +591,9 @@ DBCC CHECKIDENT ('PHRM_GoodsReceipt', RESEED, 0);
 delete from PHRM_PurchaseOrder
 DBCC CHECKIDENT ('PHRM_PurchaseOrder', RESEED, 0);
 
+delete from PHRM_FiscalYearStock
+DBCC CHECKIDENT ('PHRM_FiscalYearStock', RESEED, 0);
+
 delete from PHRM_CFG_FiscalYears
 DBCC CHECKIDENT ('PHRM_CFG_FiscalYears', RESEED, 0);
 
@@ -594,8 +603,7 @@ DBCC CHECKIDENT ('PHRM_Deposit', RESEED, 0);
 delete from PHRM_ExpiryDate_BatchNo_History
 DBCC CHECKIDENT ('PHRM_ExpiryDate_BatchNo_History', RESEED, 0);
 
-delete from PHRM_FiscalYearStock
-DBCC CHECKIDENT ('PHRM_FiscalYearStock', RESEED, 0);
+
 
 delete from PHRM_History_Item
 DBCC CHECKIDENT ('PHRM_History_Item', RESEED, 0);
@@ -877,6 +885,12 @@ delete from BIL_MST_ServiceItem
 DBCC CHECKIDENT ('BIL_MST_ServiceItem', RESEED, 0);
 
 --deleting Account Details
+delete from ACC_SubLedgerBalanceHistory
+DBCC CHECKIDENT ('ACC_SubLedgerBalanceHistory', RESEED, 0);
+
+delete from ACC_MST_SubLedger
+DBCC CHECKIDENT ('ACC_MST_SubLedger', RESEED, 0);
+
 delete from ACC_Ledger
 DBCC CHECKIDENT ('ACC_Ledger', RESEED, 0);
 
@@ -924,14 +938,15 @@ DBCC CHECKIDENT ('PHRM_MST_Item', RESEED, 0);
 delete from PHRM_MST_ItemType
 DBCC CHECKIDENT ('PHRM_MST_ItemType', RESEED, 0);
 
+delete from PHRM_MST_Generic
+DBCC CHECKIDENT ('PHRM_MST_Generic', RESEED, 0);
+
 delete from PHRM_MST_Category
 DBCC CHECKIDENT ('PHRM_MST_Category', RESEED, 0);
 
 delete from PHRM_MST_Company
 DBCC CHECKIDENT ('PHRM_MST_Company', RESEED, 0);
 
-delete from PHRM_MST_Generic
-DBCC CHECKIDENT ('PHRM_MST_Generic', RESEED, 0);
 
 delete from PHRM_MST_Rack
 DBCC CHECKIDENT ('PHRM_MST_Rack', RESEED, 0);
@@ -945,6 +960,11 @@ DBCC CHECKIDENT ('PHRM_MST_Supplier', RESEED, 0);
 delete from PHRM_MST_UnitOfMeasurement
 DBCC CHECKIDENT ('PHRM_MST_UnitOfMeasurement', RESEED, 0);
 
+delete from RAD_MST_ImagingItem
+DBCC CHECKIDENT ('RAD_MST_ImagingItem', RESEED, 0);
+
+delete from RAD_CFG_ReportTemplates
+DBCC CHECKIDENT ('RAD_CFG_ReportTemplates', RESEED, 0);
 
 end try
 
