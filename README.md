@@ -1,8 +1,14 @@
-This repository has clean up scripts for the Danphe DB. It has two files :-
+This Repository has the necessary documents and script to help you create Danphe database from scratch.
 
-Cleanupsql :- This script will delete all the transaction data from Danphe EMR. Some data like configuration , master data like country and state it keeps it. 
-Import_scripts.zip :- This zip file has all the necessary script to import data. When you unzip the file you will see it has sequence number as shown in the below figure. These sequence number tells the sequence of uploading data. Fill the data and execute it sequence wise.
+Warning :- The below script will delete all your transactional data and also some master data. Make sure to keep a back up copy so that you can revert if there are issues.
+
+It has 3 files :-
+
+-- BulkDelete_and_reseed_alltable.sql  :- This script will delete all transactional data from scratch and make your DB clean.
+
+-- Insert_master_data_and_Check_constraint_V1.1.sql :- This script will insert all necessary master data in to Danphe DB.
+
+-- DanpheEMR Database & System Setup Guide Draft.docx :- This document highlights the various steps to be performed using the above scripts.
 
 any issues email us at shiv_koirala@yahoo.com 
 
-![image](https://github.com/user-attachments/assets/5d37b4d2-9d19-4ee7-96e6-20fb6d29c3e0)
